@@ -1,21 +1,35 @@
 import React from "react";
 
-// Modal displays the selected project in larger detail
+// The ProjectModal component displays a selected project in a larger overlay view.
+// It only appears when `project` is not null.
 function ProjectModal({ project, onClose }) {
-  if (!project) return null; // If no project selected, render nothing
+
+  // If no project is selected, do not render the modal at all
+  if (!project) return null;
 
   return (
+    // Modal backdrop: clicking outside modal content closes the modal
     <div className="modal-overlay" onClick={onClose}>
-      {/* Stop click events from closing modal when clicking inside the box */}
+
+      {/* 
+        Inner modal box: stopping click propagation prevents closing the modal
+        when the user interacts inside the modal.
+      */}
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+
+        {/* Show image only if the project has one uploaded */}
         {project.image && (
           <img src={project.image} alt="" className="modal-image" />
         )}
 
+        {/* Display project text content */}
         <h2>{project.title}</h2>
         <p>{project.description}</p>
 
-        <button className="close-modal-btn" onClick={onClose}>Close</button>
+        {/* Close button inside modal */}
+        <button className="close-modal-btn" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );

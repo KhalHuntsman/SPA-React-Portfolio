@@ -1,13 +1,20 @@
-/* --- GLOBAL PAGE LAYOUT & THEME --- */
+/* ============================================================
+   GLOBAL LAYOUT & THEME WRAPPER
+   Centers the content and controls horizontal width.
+============================================================ */
 .app-wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px;
+  max-width: 1400px;  /* Prevents layout from stretching too wide on large screens */
+  margin: 0 auto;     /* Centers the app horizontally */
+  padding: 30px;      /* General spacing around content */
 }
 
-/* --- SEARCH BAR --- */
+
+/* ============================================================
+   SEARCH BAR STYLES
+   This appears in the top header row. Resizes responsively.
+============================================================ */
 .search-input {
-  width: 100%;
+  width: 100%;        /* Takes full available width */
   padding: 14px;
   background: #1a1a1a;
   border: 1px solid #333;
@@ -15,34 +22,41 @@
   color: white;
   font-size: 1rem;
   margin-bottom: 18px;
-  transition: border 0.2s;
+  transition: border 0.2s; /* Smooth border highlight on focus */
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #4f7fff;
+  border-color: #4f7fff; /* Blue accent highlight */
 }
 
-/* --- MAIN CONTENT LAYOUT --- */
+
+/* ============================================================
+   MAIN CONTENT LAYOUT
+   Form (left) + Project Grid (right)
+============================================================ */
 .content-layout {
   display: flex;
-  gap: 40px;
-  align-items: flex-start; /* <- IMPORTANT: keeps everything aligned at the top */
+  gap: 40px;           /* Space between columns */
+  align-items: flex-start; /* Ensures both columns align to the top */
 }
 
-/* --- ADD PROJECT FORM --- */
+
+/* ============================================================
+   ADD PROJECT FORM
+============================================================ */
 .project-form {
   background: #1a1a1a;
   border: 1px solid #2c2c2c;
   border-radius: 12px;
-  padding: 24px 30px;
-  width: 320px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  padding: 24px 30px;   /* Internal spacing */
+  width: 320px;         /* Fixed width column */
+  box-shadow: 0 0 15px rgba(0,0,0,0.4); /* Subtle drop shadow */
 }
 
 .project-form h2 {
   margin-bottom: 14px;
-  color: #4f7fff;
+  color: #4f7fff;       /* Section header accent color */
 }
 
 .project-form label {
@@ -52,6 +66,7 @@
   margin-bottom: 4px;
 }
 
+/* Shared input styles for title + description */
 .project-form input,
 .project-form textarea {
   width: 100%;
@@ -63,6 +78,7 @@
   margin-bottom: 16px;
 }
 
+/* Submit button */
 .project-form button {
   width: 100%;
   padding: 10px;
@@ -75,24 +91,30 @@
 }
 
 .project-form button:hover {
-  background: #80a4ff;
+  background: #80a4ff; /* Lightened hover tone */
 }
 
-/* --- PROJECT GRID --- */
+
+/* ============================================================
+   PROJECT GRID (RIGHT SIDE)
+============================================================ */
 .project-list {
-  flex: 1; /* allows grid to expand */
+  flex: 1; /* Allows grid area to expand to available space */
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Auto responsive */
   gap: 24px;
-  justify-items: center;
+  justify-items: center; /* Center cards within columns */
   align-items: start;
 }
 
-/* --- PROJECT CARDS --- */
+
+/* ============================================================
+   PROJECT CARD STYLES
+============================================================ */
 .project-item {
-  background: #1a1a1a;
-  border: 1px solid #2c2c2c;
+  background: var(--card-bg); /* Changes with light/dark theme */
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px;
   width: 100%;
@@ -100,27 +122,34 @@
 }
 
 .project-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px); /* Lift hover effect */
   box-shadow: 0 0 12px rgba(79, 127, 255, 0.45);
   border-color: #4f7fff;
 }
 
-/* --- IMAGE DISPLAY --- */
+
+/* ============================================================
+   PROJECT CARD IMAGE HANDLING
+============================================================ */
 .project-thumb {
   width: 100%;
   height: 160px;
-  object-fit: cover; /* <- ensures no distortion */
+  object-fit: cover; /* Ensures image scales without distortion */
   border-radius: 8px;
   margin-bottom: 12px;
 }
 
-/* --- EDIT & DELETE BUTTONS --- */
+
+/* ============================================================
+   ACTION BUTTONS ON PROJECT CARD (Edit / Save / Delete)
+============================================================ */
 .button-row {
   display: flex;
   gap: 8px;
   margin-top: 12px;
 }
 
+/* Shared button properties */
 .edit-btn, .save-btn, .cancel-btn, .delete-btn {
   padding: 7px 12px;
   border-radius: 6px;
@@ -128,6 +157,7 @@
   cursor: pointer;
 }
 
+/* Individual button colors */
 .edit-btn { background: #4f7fff; color: white; }
 .edit-btn:hover { background: #80a4ff; }
 
@@ -140,7 +170,10 @@
 .delete-btn { background: #ff4b4b; color: white; }
 .delete-btn:hover { background: #ff2f2f; }
 
-/* --- FADE + SLIDE ANIMATION --- */
+
+/* ============================================================
+   FADE-IN ANIMATION FOR NEW PROJECT CARDS
+============================================================ */
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -151,7 +184,10 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- MOBILE LAYOUT --- */
+
+/* ============================================================
+   RESPONSIVE MOBILE LAYOUT (FORM STACKS ABOVE GRID)
+============================================================ */
 @media (max-width: 900px) {
   .content-layout {
     flex-direction: column;
@@ -164,21 +200,23 @@
   }
 }
 
-/* --- MODAL OVERLAY --- */
+
+/* ============================================================
+   MODAL BACKDROP & CONTENT STYLING
+============================================================ */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.75); /* Dimmed background */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 50;
 }
 
-/* --- MODAL CONTENT BOX --- */
 .modal-content {
   background: var(--card-bg);
   padding: 24px;
@@ -188,7 +226,6 @@
   text-align: center;
 }
 
-/* --- MODAL IMAGE --- */
 .modal-image {
   width: 100%;
   border-radius: 10px;
@@ -196,7 +233,6 @@
   object-fit: cover;
 }
 
-/* --- CLOSE BUTTON --- */
 .close-modal-btn {
   background: #ff4b4b;
   border: none;
@@ -207,6 +243,10 @@
   margin-top: 12px;
 }
 
+
+/* ============================================================
+   THEME COLOR VARIABLES (LIGHT & DARK)
+============================================================ */
 body[data-theme="dark"] {
   --background: #111;
   --card-bg: #1a1a1a;
@@ -215,46 +255,33 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
-  --background: #ffffff;   /* Full-screen white */
+  --background: #ffffff;
   --card-bg: #f4f4f4;
   --border: #ccc;
   --text: #222;
 }
 
-/* Replace direct color values inside project cards with variables */
 
-.project-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-/* Theme toggle button */
-.theme-toggle-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 6px 14px;
-  border-radius: 6px;
-  margin-bottom: 18px;
-  cursor: pointer;
-  color: var(--text);
-}
-/* Top bar with search + theme toggle aligned */
+/* ============================================================
+   TOP BAR LAYOUT (SEARCH + THEME TOGGLE)
+============================================================ */
 .top-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Search left, toggle right */
   margin-bottom: 20px;
   width: 100%;
 }
 
-/* Make the search input take up most of the space */
 .top-bar .search-input {
-  flex: 1;
-  margin-right: 16px;
+  flex: 1;            /* Search field expands */
+  margin-right: 16px; /* Space before toggle button */
 }
 
-/* Style the theme toggle button */
+
+/* ============================================================
+   THEME TOGGLE BUTTON STYLING
+============================================================ */
 .theme-toggle-btn {
   padding: 10px 16px;
   border-radius: 6px;
@@ -263,7 +290,7 @@ body[data-theme="light"] {
   color: var(--text);
   cursor: pointer;
   transition: 0.25s;
-  white-space: nowrap; /* Prevents text from wrapping */
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
 .theme-toggle-btn:hover {
